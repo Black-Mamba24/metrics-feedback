@@ -15,8 +15,16 @@ public class BaseTest {
 
     protected void prepare() {
         registry = new MetricRegistry();
-        feedbackManager = new FeedbackManager(registry, 10, "com.zhaiyi.metrics_feedback.config");
+        feedbackManager = new FeedbackManager(registry, 10);
         feedbackManager.setLoggerName("root");
         random = new Random();
+    }
+
+    protected void xmlConfig() {
+        feedbackManager.setConfigFile("/Users/zhaiyi/Desktop/metrics-feedback/src/test/java/com/zhaiyi/metrics_feedback/test/xml/Configurations.xml");
+    }
+
+    protected void codeConfig() {
+        feedbackManager.setConfigPackage("com.zhaiyi.metrics_feedback.test.config");
     }
 }

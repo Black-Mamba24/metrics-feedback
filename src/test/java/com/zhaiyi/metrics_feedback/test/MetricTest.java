@@ -20,6 +20,7 @@ public class MetricTest extends BaseTest {
     @Before
     public void setUp() {
         prepare();
+        codeConfig();
     }
 
     /* counter */
@@ -385,6 +386,17 @@ public class MetricTest extends BaseTest {
         for(int i = 0; i < 15 * 60; i++) {
             histogram.update(random.nextInt(100));
             Thread.sleep(random.nextInt(1000));
+        }
+    }
+
+    @Test
+    public void switchTest() {
+        String s = null;
+        switch (s) {
+            case "dd":
+                break;
+            default:
+                System.out.print("null");
         }
     }
 

@@ -19,9 +19,21 @@ import org.reflections.scanners.ResourcesScanner;
 import org.reflections.scanners.SubTypesScanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 框架入口,调用start()启动框架
@@ -31,26 +43,35 @@ public class FeedbackManager extends LifeCycleSupport {
     private static Logger LOG;
     private MetricRegistry registry;
     private int poolSize = 10;
+    //编码配置包路径
     private String configPackage;
+    //配置文件配置路径
+    private String configFile;
     private String loggerName = "root";
     private Reflections reflections;
     private Set<FeedbackConfig> configs = new HashSet<FeedbackConfig>();
     private Set<FeedbackConfiguration> configurations = new HashSet<FeedbackConfiguration>();
     private FeedbackScheduledExecutorService feedbackExecutorService = new FeedbackScheduledExecutorService();
 
-    public FeedbackManager(MetricRegistry registry, int poolSize, String configPackage) {
+    public FeedbackManager(MetricRegistry registry, int poolSize) {
         Preconditions.checkNotNull(registry);
         Preconditions.checkArgument(poolSize >= 0);
-        Preconditions.checkNotNull(configPackage);
         this.registry = registry;
         this.poolSize = poolSize;
-        this.configPackage = configPackage;
     }
 
     @Override
     public void doInit() throws Exception {
-        reflections = new Reflections(configPackage, new SubTypesScanner(), new ResourcesScanner());
-        instantiate();
+        if (configPackage != null) {
+            reflections = new Reflections(configPackage, new SubTypesScanner(), new ResourcesScanner());
+            instantiate();
+        }
+
+        if (configFile != null) {
+            FeedbackXmlParser parser = new FeedbackXmlParser();
+            List<FeedbackConfiguration> xmlConfigurations = parser.parse(configFile);
+            configurations.addAll(xmlConfigurations.stream().collect(Collectors.toList()));
+        }
         logConfig();
     }
 
@@ -169,5 +190,13 @@ public class FeedbackManager extends LifeCycleSupport {
 
     public void setLoggerName(String loggerName) {
         this.loggerName = loggerName;
+    }
+
+    public void setConfigFile(String configFile) {
+        this.configFile = configFile;
+    }
+
+    public void setConfigPackage(String configPackage) {
+        this.configPackage = configPackage;
     }
 }

@@ -2,11 +2,11 @@
 <configurations>
     <configuration>
         <type>Counter</type>
-        <metricName>com.zhaiyi.metrics_feedback.test.MetricTest.counter</metricName>
+        <metricName>com.zhaiyi.metrics_feedback.test.XmlConfigurationTest.counter</metricName>
         <initialDelay>0</initialDelay>
         <period>1</period>
         <timeUnit>second</timeUnit>
-        <action>com.zhaiyi.metrics_feedback.test.config.counter.CounterConfig</action>
+        <action>com.zhaiyi.metrics_feedback.test.xml.action.CounterAction</action>
         <thresholds>
             <threadhold>
                 <name>count</name>
@@ -15,25 +15,4 @@
             </threadhold>
         </thresholds>
     </configuration>
-
-    <!--<configuration>-->
-        <!--<type>Meter</type>-->
-        <!--<metricName>com.zhaiyi.metrics_feedback.test.MetricTest.meterCount</metricName>-->
-        <!--<initialDelay>0</initialDelay>-->
-        <!--<period>1</period>-->
-        <!--<timeUnit>second</timeUnit>-->
-        <!--<action>com.zhaiyi.metrics_feedback.test.config.meter.MeterCountConfig</action>-->
-        <!--<thresholds>-->
-            <!--<threadhold>-->
-                <!--<name>count</name>-->
-                <!--<min>0</min>-->
-                <!--<max>100</max>-->
-            <!--</threadhold>-->
-
-            <!--<threadhold>-->
-                <!--<name>meanRate</name>-->
-                <!--<max>10.2</max>-->
-            <!--</threadhold>-->
-        <!--</thresholds>-->
-    <!--</configuration>-->
 </configurations>
