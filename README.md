@@ -51,4 +51,17 @@ public class HeapUsageConfig implements FeedbackConfig {
 * poolSize		线程池大小
 * configPackage		配置类的包路径名称
 
-通过feedbackManager.start()启动, feedbackManager.stop()停止
+你可以自定义日志打印策略：
+```java
+feedbackManager.setLoggerName()
+```
+
+通过一下语句启动、停止框架：
+```java
+feedbackManager.start()
+feedbackManager.stop()
+```
+
+
+
+
