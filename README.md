@@ -1,14 +1,14 @@
 # metrics-feedback
-##关于metrics：
+## 关于metrics：
 metrics提供了对次数、频率、数据分布的统计，能够帮助开发运维人员统计系统中各种参数
 
-##metrics-feedback功能：
+## metrics-feedback功能：
 metrics-feedback基于metrics的统计值，实现当被监控指标处于正常范围、超出异常范围、恢复到正常时系统可以执行自定义的反馈操作
 帮助开发者用编码的方式处理系统异常情况
 
 metrics-feedback实现了对Gauge、Counter、Meter、Histogram、Timer的统计反馈，同时支持了常用的jvm相关的统计项例如memory、gc、thread-state，同时支持logback、log4j、log4j2的日志统计
 
-##使用方法：
+## 使用方法：
 metrics-feedback提供了编码配置：
 实现FeedbackConfig接口，通过builder配置参数
 ```java
