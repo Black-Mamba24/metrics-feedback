@@ -9,6 +9,8 @@ metrics-feedback基于metrics的统计值，实现当被监控指标处于正常
 metrics-feedback实现了对Gauge、Counter、Meter、Histogram、Timer的统计反馈，同时支持了常用的jvm相关的统计项例如memory、gc、thread-state，同时支持logback、log4j、log4j2的日志统计
 
 ## 使用方法：
+
+### 编码配置
 metrics-feedback提供了编码配置：
 实现FeedbackConfig接口，通过builder配置参数
 ```java
@@ -43,13 +45,45 @@ public class HeapUsageConfig implements FeedbackConfig {
     }
 }
 ```
+`编码配置需要设置config类package路径，以便框架发现`
+
+```java
+feedbackManager.setConfigPackage()
+```
+
+### 配置文件配置
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<configurations>
+    <configuration>
+        <type>Counter</type>
+        <metricName>com.zhaiyi.metrics_feedback.test.XmlConfigurationTest.counter</metricName>
+        <initialDelay>0</initialDelay>
+        <period>1</period>
+        <timeUnit>second</timeUnit>
+        <action>com.zhaiyi.metrics_feedback.test.xml.action.CounterAction</action>
+        <thresholds>
+            <threadhold>
+                <name>count</name>
+                <min>0</min>
+                <max>10</max>
+            </threadhold>
+        </thresholds>
+    </configuration>
+</configurations>
+```
+
+`配置文件配置需要设置配置文件路径`
+
+```java
+feedbackManager.setConfigFile()
+```
 
 同时，需要用户构造FeedbackManager对象:
 
-需要3个参数：
+需要2个参数：
 * MetricRegistry	metrics注册中心
 * poolSize		线程池大小
-* configPackage		配置类的包路径名称
 
 你可以自定义日志打印策略：
 ```java
@@ -61,7 +95,4 @@ feedbackManager.setLoggerName()
 feedbackManager.start()
 feedbackManager.stop()
 ```
-
-
-
 
