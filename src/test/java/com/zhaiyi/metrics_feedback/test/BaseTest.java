@@ -21,7 +21,7 @@ public class BaseTest {
     }
 
     protected void xmlConfig() {
-        feedbackManager.setConfigFile("/Users/zhaiyi/Desktop/metrics-feedback/src/test/java/com/zhaiyi/metrics_feedback/test/xml/Configurations.xml");
+        feedbackManager.setConfigFile("src/test/resource/Configurations.xml");
     }
 
     protected void codeConfig() {

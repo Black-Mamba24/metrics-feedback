@@ -4,11 +4,12 @@ import com.google.common.base.Preconditions;
 import com.zhaiyi.metrics_feedback.action.Action;
 import com.zhaiyi.metrics_feedback.configuration.FeedbackConfiguration;
 import com.zhaiyi.metrics_feedback.constants.MetricType;
+import com.zhaiyi.metrics_feedback.util.LogUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import org.xml.sax.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,7 +27,28 @@ public class FeedbackXmlParser {
 
     public List<FeedbackConfiguration> parse(String configFile) throws ParserConfigurationException, IOException, SAXException, IllegalAccessException, InstantiationException, ClassNotFoundException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(true);
+        factory.setNamespaceAware(true);
+
         DocumentBuilder dBuilder = factory.newDocumentBuilder();
+        dBuilder.setEntityResolver(new XsdResolver());
+        dBuilder.setErrorHandler(new ErrorHandler() {
+            @Override
+            public void warning(SAXParseException exception) throws SAXException {
+                LogUtil.getLogger().warn("SAXParse warning: {}", exception.toString());
+            }
+
+            @Override
+            public void error(SAXParseException exception) throws SAXException {
+                LogUtil.getLogger().error("SAXParse error: {}", exception.toString());
+            }
+
+            @Override
+            public void fatalError(SAXParseException exception) throws SAXException {
+                LogUtil.getLogger().error("SAXParse fatalError: {}", exception.toString());
+            }
+        });
+
         Document document = dBuilder.parse(new File(configFile));
         Element element = document.getDocumentElement();
         NodeList configurations = element.getChildNodes();
@@ -187,5 +209,23 @@ public class FeedbackXmlParser {
         Preconditions.checkNotNull(action);
         Class<Action> clazz = (Class<Action>) Class.forName(action);
         builder.action(clazz.newInstance());
+    }
+}
+
+class XsdResolver implements EntityResolver {
+
+    @Override
+    public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
+        if (systemId == null) {
+            return null;
+        }
+        try {
+            InputSource source = new InputSource(getClass().getResourceAsStream(systemId));
+            source.setPublicId(publicId);
+            source.setSystemId(systemId);
+            return source;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

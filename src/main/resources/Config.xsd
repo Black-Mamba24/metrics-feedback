@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.w3schools.com"
+           xmlns="http://www.w3schools.com"
+           elementFormDefault="qualified">
+    <xs:element name="configurations">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="configuration" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="type" type="type"/>
+                            <xs:element name="metricName" type="xs:string"/>
+                            <xs:element name="initialDelay" type="xs:long" minOccurs="0"/>
+                            <xs:element name="period" type="xs:long" minOccurs="0"/>
+                            <xs:element name="timeUnit" type="timeUnit" minOccurs="0"/>
+                            <xs:element name="action" type="xs:string" minOccurs="0"/>
+                            <xs:element name="thresholds" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="threshold" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="name" type="name"/>
+                                                    <xs:element name="min" type="xs:double" minOccurs="0"/>
+                                                    <xs:element name="max" type="xs:double"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="GAUGE"/>
+            <xs:enumeration value="COUNTER"/>
+            <xs:enumeration value="METER"/>
+            <xs:enumeration value="HISTOGRAM"/>
+            <xs:enumeration value="TIMER"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="timeUnit">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NANOSECONDS"/>
+            <xs:enumeration value="MICROSECONDS"/>
+            <xs:enumeration value="MILLISECONDS"/>
+            <xs:enumeration value="SECONDS"/>
+            <xs:enumeration value="MINUTES"/>
+            <xs:enumeration value="HOURS"/>
+            <xs:enumeration value="DAYS"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="name">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="value"/>
+            <xs:enumeration value="count"/>
+            <xs:enumeration value="mean rate"/>
+            <xs:enumeration value="1-minute rate"/>
+            <xs:enumeration value="5-minute rate"/>
+            <xs:enumeration value="15-minute rate"/>
+            <xs:enumeration value="min"/>
+            <xs:enumeration value="max"/>
+            <xs:enumeration value="mean"/>
+            <xs:enumeration value="stddev"/>
+            <xs:enumeration value="median"/>
+            <xs:enumeration value="75%"/>
+            <xs:enumeration value="95%"/>
+            <xs:enumeration value="98%"/>
+            <xs:enumeration value="99%"/>
+            <xs:enumeration value="999%"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

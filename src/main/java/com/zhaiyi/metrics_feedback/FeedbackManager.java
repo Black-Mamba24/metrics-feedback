@@ -62,6 +62,7 @@ public class FeedbackManager extends LifeCycleSupport {
 
     @Override
     public void doInit() throws Exception {
+        logConfig();
         if (configPackage != null) {
             reflections = new Reflections(configPackage, new SubTypesScanner(), new ResourcesScanner());
             instantiate();
@@ -72,7 +73,6 @@ public class FeedbackManager extends LifeCycleSupport {
             List<FeedbackConfiguration> xmlConfigurations = parser.parse(configFile);
             configurations.addAll(xmlConfigurations.stream().collect(Collectors.toList()));
         }
-        logConfig();
     }
 
     private void instantiate() throws IllegalAccessException, InstantiationException {

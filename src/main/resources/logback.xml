@@ -8,10 +8,6 @@
         </encoder>
     </appender>
 
-    <logger name="defaultLogback" level="INFO" additivity="false">
-        <appender-ref ref="STDOUT"/>
-    </logger>
-
     <root>
         <appender-ref ref="STDOUT"/>
     </root>
