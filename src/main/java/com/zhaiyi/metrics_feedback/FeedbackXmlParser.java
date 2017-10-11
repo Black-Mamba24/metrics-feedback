@@ -36,10 +36,11 @@ public class FeedbackXmlParser {
         for (int i = 0; i < configurations.getLength(); i++) {
             FeedbackConfiguration.Builder builder = new FeedbackConfiguration.Builder();
             Node configuration = configurations.item(i);
+            if (!"configuration".equals(configuration.getNodeName())) {
+                continue;
+            }
             NodeList params = configuration.getChildNodes();
-            boolean right = false;
             for (int j = 0; j < params.getLength(); j++) {
-                right = true;
                 Node param = params.item(j);
                 Node value = param.getChildNodes().item(0);
                 switch (param.getNodeName()) {
@@ -65,8 +66,10 @@ public class FeedbackXmlParser {
                         NodeList thresholds = param.getChildNodes();
                         for (int k = 0; k < thresholds.getLength(); k++) {
                             Node threshold = thresholds.item(k);
+                            if (!"threshold".equals(threshold.getNodeName())) {
+                                continue;
+                            }
                             NodeList thresholdParams = threshold.getChildNodes();
-
                             String name = null;
                             String min = "0";
                             String max = null;
@@ -87,18 +90,14 @@ public class FeedbackXmlParser {
                                         //ignore
                                 }
                             }
-                            if(name != null) {
-                                setThreshold(builder, name, min, max);
-                            }
+                            setThreshold(builder, name, min, max);
                         }
                         break;
                     default:
                         //ignore
                 }
             }
-            if(right) {
-                list.add(builder.build());
-            }
+            list.add(builder.build());
         }
         return list;
     }

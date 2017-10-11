@@ -8,11 +8,11 @@
         <timeUnit>second</timeUnit>
         <action>com.zhaiyi.metrics_feedback.test.xml.action.CounterAction</action>
         <thresholds>
-            <threadhold>
+            <threshold>
                 <name>count</name>
                 <min>0</min>
                 <max>10</max>
-            </threadhold>
+            </threshold>
         </thresholds>
     </configuration>
 </configurations>
