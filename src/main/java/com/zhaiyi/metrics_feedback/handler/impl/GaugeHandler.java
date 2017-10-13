@@ -72,7 +72,7 @@ public class GaugeHandler extends BaseHandler {
                         throw new IllegalArgumentException("gauge current value is not number");
                 }
 
-                judge(safeRange, current);
+                judge(key, safeRange, current);
 
             }
         }

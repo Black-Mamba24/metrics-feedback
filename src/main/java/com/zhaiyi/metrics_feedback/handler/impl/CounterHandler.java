@@ -29,7 +29,7 @@ public class CounterHandler extends BaseHandler {
                 }
                 double current = counter.getCount();
 
-                judge(safeRange, current);
+                judge(key, safeRange, current);
             }
         }
     }

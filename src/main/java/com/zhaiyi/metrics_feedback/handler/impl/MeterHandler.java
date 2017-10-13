@@ -44,7 +44,7 @@ public class MeterHandler extends BaseHandler {
                         throw new IllegalArgumentException("meter metric item " + key + " is illegal");
                 }
 
-                judge(safeRange, current);
+                judge(key, safeRange, current);
             }
         }
     }

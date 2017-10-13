@@ -64,7 +64,7 @@ public class HistogramHandler extends BaseHandler {
                         throw new IllegalArgumentException("histogram metric item " + key + " is illegal");
                 }
 
-                judge(safeRange, current);
+                judge(key, safeRange, current);
             }
         }
     }

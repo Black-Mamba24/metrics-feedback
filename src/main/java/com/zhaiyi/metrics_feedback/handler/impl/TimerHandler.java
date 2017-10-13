@@ -77,7 +77,7 @@ public class TimerHandler extends BaseHandler {
                         throw new IllegalArgumentException("timer metric item " + key + " is illegal");
                 }
 
-                judge(safeRange, current);
+                judge(key, safeRange, current);
             }
         }
     }
