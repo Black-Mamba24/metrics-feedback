@@ -54,13 +54,15 @@ feedbackManager.setConfigPackage()
 ### 配置文件配置
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<configurations>
+<configurations xmlns="http://www.w3schools.com"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="Config.xsd">
     <configuration>
-        <type>Counter</type>
+        <type>COUNTER</type>
         <metricName>com.zhaiyi.metrics_feedback.test.XmlConfigurationTest.counter</metricName>
         <initialDelay>0</initialDelay>
         <period>1</period>
-        <timeUnit>second</timeUnit>
+        <timeUnit>SECONDS</timeUnit>
         <action>com.zhaiyi.metrics_feedback.test.xml.action.CounterAction</action>
         <thresholds>
             <threshold>
