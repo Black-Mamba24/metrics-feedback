@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurations xmlns="http://www.w3schools.com"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="../../main/resources/Config.xsd">
+                xsi:schemaLocation="Config.xsd ../../main/resources/Config.xsd">
     <configuration>
         <type>COUNTER</type>
         <metricName>com.zhaiyi.metrics_feedback.test.XmlConfigurationTest.counter</metricName>

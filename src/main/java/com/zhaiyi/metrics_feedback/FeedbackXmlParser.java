@@ -24,14 +24,33 @@ import java.util.concurrent.TimeUnit;
  * Created by zhaiyi on 2017/10/10.
  */
 public class FeedbackXmlParser {
+    private static final String SCHEMA_LANGUAGE_ATTRIBUTE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
+
+    private static final String XSD_SCHEMA_LANGUAGE = "http://www.w3.org/2001/XMLSchema";
 
     public List<FeedbackConfiguration> parse(String configFile) throws ParserConfigurationException, IOException, SAXException, IllegalAccessException, InstantiationException, ClassNotFoundException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setValidating(true);
         factory.setNamespaceAware(true);
+        factory.setAttribute(SCHEMA_LANGUAGE_ATTRIBUTE, XSD_SCHEMA_LANGUAGE);
 
         DocumentBuilder dBuilder = factory.newDocumentBuilder();
-        dBuilder.setEntityResolver(new XsdResolver());
+//        dBuilder.setEntityResolver(new EntityResolver() {
+//            @Override
+//            public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
+//                if (systemId == null) {
+//                    return null;
+//                }
+//                try {
+//                    InputSource source = new InputSource(getClass().getResourceAsStream(systemId));
+//                    source.setPublicId(publicId);
+//                    source.setSystemId(systemId);
+//                    return source;
+//                } catch (Exception e) {
+//                    return null;
+//                }
+//            }
+//        });
         dBuilder.setErrorHandler(new ErrorHandler() {
             @Override
             public void warning(SAXParseException exception) throws SAXException {
@@ -212,20 +231,4 @@ public class FeedbackXmlParser {
     }
 }
 
-class XsdResolver implements EntityResolver {
 
-    @Override
-    public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
-        if (systemId == null) {
-            return null;
-        }
-        try {
-            InputSource source = new InputSource(getClass().getResourceAsStream(systemId));
-            source.setPublicId(publicId);
-            source.setSystemId(systemId);
-            return source;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-}

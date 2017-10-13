@@ -49,10 +49,10 @@ public class FeedbackManager extends LifeCycleSupport {
     private String configFile;
     private String loggerName = "root";
     private Reflections reflections;
+
     private Set<FeedbackConfig> configs = new HashSet<FeedbackConfig>();
     private Set<FeedbackConfiguration> configurations = new HashSet<FeedbackConfiguration>();
     private FeedbackScheduledExecutorService feedbackExecutorService = new FeedbackScheduledExecutorService();
-
     public FeedbackManager(MetricRegistry registry, int poolSize) {
         Preconditions.checkNotNull(registry);
         Preconditions.checkArgument(poolSize >= 0);
