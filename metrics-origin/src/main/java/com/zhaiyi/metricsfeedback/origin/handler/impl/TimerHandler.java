@@ -4,7 +4,7 @@ import com.codahale.metrics.Snapshot;
 import com.codahale.metrics.Timer;
 import com.zhaiyi.metricsfeedback.origin.configuration.FeedbackConfiguration;
 import com.zhaiyi.metricsfeedback.origin.configuration.SafeRange;
-
+import static com.zhaiyi.metricsfeedback.origin.constants.MetircConstants.*;
 import java.util.Map;
 
 /**

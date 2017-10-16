@@ -4,7 +4,7 @@ import com.codahale.metrics.Meter;
 import com.zhaiyi.metricsfeedback.origin.configuration.FeedbackConfiguration;
 import com.zhaiyi.metricsfeedback.origin.configuration.SafeRange;
 import com.zhaiyi.metricsfeedback.origin.constants.MetircConstants;
-
+import static com.zhaiyi.metricsfeedback.origin.constants.MetircConstants.*;
 import java.util.Map;
 
 /**
@@ -24,19 +24,19 @@ public class MeterHandler extends BaseHandler {
                 SafeRange safeRange = entry.getValue();
                 double current;
                 switch (key) {
-                    case MetircConstants.count:
+                    case count:
                         current = meter.getCount();
                         break;
-                    case MetircConstants.meanRate:
+                    case meanRate:
                         current = meter.getMeanRate();
                         break;
-                    case MetircConstants.oneMinuteRate:
+                    case oneMinuteRate:
                         current = meter.getOneMinuteRate();
                         break;
-                    case MetircConstants.fiveMinuteRate:
+                    case fiveMinuteRate:
                         current = meter.getFiveMinuteRate();
                         break;
-                    case MetircConstants.fifteenMinuteRate:
+                    case fifteenMinuteRate:
                         current = meter.getFifteenMinuteRate();
                         break;
                     default:

@@ -11,11 +11,11 @@ import com.zhaiyi.metricsfeedback.origin.util.NameUtil;
  */
 public class MeterFilter implements Filter {
     private Meter meter;
-    private MetricRegistry registry = MetricRegistryUtil.getMetricRegistry();
 
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         if (meter == null) {
+            MetricRegistry registry = MetricRegistryUtil.getMetricRegistry();
             String metricName = NameUtil.getMetricName(invoker.getInterface(), invocation.getMethodName(), "meter");
             meter = registry.meter(metricName);
         }
