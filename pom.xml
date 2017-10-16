@@ -6,6 +6,7 @@
 
     <groupId>com.zhaiyi</groupId>
     <artifactId>metrics-feedback</artifactId>
+    <packaging>pom</packaging>
     <version>1.0.0</version>
     <build>
         <plugins>
@@ -19,6 +20,10 @@
             </plugin>
         </plugins>
     </build>
+    <modules>
+        <module>metrics-dubbo</module>
+        <module>metrics-origin</module>
+    </modules>
 
     <distributionManagement>
         <repository>
@@ -46,6 +51,7 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
