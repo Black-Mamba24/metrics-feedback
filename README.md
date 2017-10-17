@@ -81,6 +81,7 @@ feedbackManager.setConfigPackage()
 feedbackManager.setConfigFile()
 ```
 
+### 启动框架
 同时，需要用户构造FeedbackManager对象:
 
 需要2个参数：
@@ -97,4 +98,7 @@ feedbackManager.setLoggerName()
 feedbackManager.start()
 feedbackManager.stop()
 ```
+
+## metrics-dubbo
+为了降低代码侵入，并更好的支持dubbo服务，提供了dubbo filter，能够度量dubbo调用次数、时长。
 
