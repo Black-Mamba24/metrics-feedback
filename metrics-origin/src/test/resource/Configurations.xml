@@ -4,11 +4,11 @@
                 xsi:schemaLocation="Config.xsd ../../main/resources/Config.xsd">
     <configuration>
         <type>COUNTER</type>
-        <metricName>com.zhaiyi.metricsfeedback.test.XmlConfigurationTest.counter</metricName>
+        <metricName>com.zhaiyi.metricsfeedback.origin.XmlConfigurationTest.counter</metricName>
         <initialDelay>0</initialDelay>
         <period>1</period>
         <timeUnit>SECONDS</timeUnit>
-        <action>com.zhaiyi.metricsfeedback.test.xml.action.CounterAction</action>
+        <action>com.zhaiyi.metricsfeedback.origin.xml.action.CounterAction</action>
         <thresholds>
             <threshold>
                 <name>count</name>

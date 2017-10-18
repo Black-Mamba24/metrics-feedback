@@ -8,25 +8,25 @@
 
     <context:component-scan base-package="com.zhaiyi.metricsfeedback"/>
 
-    <bean id="feedbackManager" class="com.zhaiyi.metricsfeedback.FeedbackManager">
+    <bean id="feedbackManager" class="com.zhaiyi.metricsfeedback.origin.FeedbackManager">
         <constructor-arg index="0" value="2"/>
     </bean>
 
-    <bean id="myService" class="com.zhaiyi.metricsfeedback.MyService"/>
+    <bean id="myService" class="com.zhaiyi.metricsfeedback.annotation.MyService"/>
 
-    <bean id="counterParser" class="com.zhaiyi.metricsfeedback.parser.CounterParser">
+    <bean id="counterParser" class="com.zhaiyi.metricsfeedback.annotation.parser.CounterParser">
         <property name="feedbackManager" ref="feedbackManager"/>
     </bean>
 
-    <bean id="meterParser" class="com.zhaiyi.metricsfeedback.parser.MeterParser">
+    <bean id="meterParser" class="com.zhaiyi.metricsfeedback.annotation.parser.MeterParser">
         <property name="feedbackManager" ref="feedbackManager"/>
     </bean>
 
-    <bean id="histogramParser" class="com.zhaiyi.metricsfeedback.parser.HistogramParser">
+    <bean id="histogramParser" class="com.zhaiyi.metricsfeedback.annotation.parser.HistogramParser">
         <property name="feedbackManager" ref="feedbackManager"/>
     </bean>
 
-    <bean id="timerParser" class="com.zhaiyi.metricsfeedback.parser.TimerParser">
+    <bean id="timerParser" class="com.zhaiyi.metricsfeedback.annotation.parser.TimerParser">
         <property name="feedbackManager" ref="feedbackManager"/>
     </bean>
 </beans>
