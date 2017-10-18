@@ -102,3 +102,35 @@ feedbackManager.stop()
 ## metrics-dubbo
 为了降低代码侵入，并更好的支持dubbo服务，提供了dubbo filter，能够度量dubbo调用次数、时长。
 
+## metrics-annotation
+提供了@CounterConfig(), @MeterConfig(), @HistogramConfig(), @TimerConfig()。
+实例配置如下：
+spring xml:
+```xml
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <context:component-scan base-package="com.zhaiyi.metricsfeedback"/>
+
+    <bean id="feedbackManager" class="com.zhaiyi.metricsfeedback.FeedbackManager">
+        <constructor-arg index="0" value="2"/>
+    </bean>
+
+    <bean id="histogramParser" class="com.zhaiyi.metricsfeedback.parser.HistogramParser">
+        <property name="feedbackManager" ref="feedbackManager"/>
+    </bean>
+```
+java:
+```java
+    @HistogramConfig(period = 1, thresholds = {HistogramConstants.percent75 + ", 70, 80", HistogramConstants.percent95 + ", 90, 98"}, action = MyAction.class)
+    public void histogram() throws InterruptedException {
+        System.out.println("histogram service...");
+        Thread.sleep(random.nextInt(100));
+    }
+```
+
+`metrics-dubbo, metrics-annotation都是方便应用接入，降低业务侵入`
+
+
+
+
+
