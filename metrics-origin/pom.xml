@@ -16,35 +16,30 @@
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-jvm</artifactId>
             <version>${metrics.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-logback</artifactId>
             <version>${metrics.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-log4j</artifactId>
             <version>${metrics.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-log4j2</artifactId>
             <version>${metrics.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.9.11</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

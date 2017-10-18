@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+    <context:component-scan base-package="com.zhaiyi.metricsfeedback"/>
+
+    <bean id="feedbackManager" class="com.zhaiyi.metricsfeedback.FeedbackManager">
+        <constructor-arg index="0" value="2"/>
+    </bean>
+
+    <bean id="myService" class="com.zhaiyi.metricsfeedback.MyService"/>
+
+    <bean id="counterParser" class="com.zhaiyi.metricsfeedback.parser.CounterParser">
+        <property name="feedbackManager" ref="feedbackManager"/>
+    </bean>
+
+    <bean id="meterParser" class="com.zhaiyi.metricsfeedback.parser.MeterParser">
+        <property name="feedbackManager" ref="feedbackManager"/>
+    </bean>
+
+    <bean id="histogramParser" class="com.zhaiyi.metricsfeedback.parser.HistogramParser">
+        <property name="feedbackManager" ref="feedbackManager"/>
+    </bean>
+
+    <bean id="timerParser" class="com.zhaiyi.metricsfeedback.parser.TimerParser">
+        <property name="feedbackManager" ref="feedbackManager"/>
+    </bean>
+</beans>

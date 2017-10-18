@@ -59,11 +59,11 @@ feedbackManager.setConfigPackage()
                 xsi:schemaLocation="Config.xsd">
     <configuration>
         <type>COUNTER</type>
-        <metricName>com.zhaiyi.metrics_feedback.test.XmlConfigurationTest.counter</metricName>
+        <metricName>com.zhaiyi.metricsfeedback.test.XmlConfigurationTest.counter</metricName>
         <initialDelay>0</initialDelay>
         <period>1</period>
         <timeUnit>SECONDS</timeUnit>
-        <action>com.zhaiyi.metrics_feedback.test.xml.action.CounterAction</action>
+        <action>com.zhaiyi.metricsfeedback.test.xml.action.CounterAction</action>
         <thresholds>
             <threshold>
                 <name>count</name>
